@@ -1,5 +1,5 @@
 import pandas as pd
-
+import constants
 
 file_name = './timetables/timetable.xlsx'
 
@@ -23,3 +23,7 @@ def get_data_from_excel(filename):
             })
 
     return result_dict
+
+
+def get_timetable(group, date):
+    pass
