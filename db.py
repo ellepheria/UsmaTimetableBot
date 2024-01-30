@@ -62,4 +62,19 @@ def update_group(user_id, group):
 
     return True
 
-print(get_user(1))
+
+def get_group(user_id):
+    if not get_user(user_id):
+        return None
+
+    sql = "SELECT \"group\" FROM users WHERE tg_id=%s"
+    conn = psycopg2.connect(dbname=config.DB_NAME, user=config.DB_USER, password=config.DB_PASS, host=config.DB_HOST)
+    with conn.cursor() as cursor:
+        cursor.execute(sql, (user_id,))
+        result = cursor.fetchone()
+        conn.commit()
+    conn.close()
+
+    if result:
+        return result[0]
+    return None
