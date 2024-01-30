@@ -4,11 +4,11 @@ import config
 
 def add_user(user):
 
-    if get_user(user['id']):
+    if get_user(user.id):
         return False
 
     sql = "INSERT INTO users (tg_id, tg_name, username) VALUES (%s, %s, %s)"
-    userdata = (user['id'], user['first_name'], user['username'])
+    userdata = (user.id, user.first_name, user.username)
     conn = psycopg2.connect(dbname=config.DB_NAME, user=config.DB_USER, password=config.DB_PASS, host=config.DB_HOST)
     with conn.cursor() as cursor:
         cursor.execute(sql, userdata)
