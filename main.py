@@ -37,14 +37,30 @@ def get_text_messages(message):
         'Укажите необходимый день недели (например, ПН)'
     )
     return
-    # bot.send_message(message.from_user.id,
-    #                  utils.generate_message(message.from_user.first_name, utils.get_timetable('ЛД 101', 1))
-    #                  )
 
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-
+    if message.text in constants.GROUPS:
+        update_group(message.from_user.id, message.text)
+        bot.send_message(
+            message.from_user.id,
+            'Укажите необходимый день недели (например, ПН)'
+        )
+        return
+    if message.text in constants.DAY_TO_DATE:
+        group = get_group(message.from_user.id)
+        date = constants.DAY_TO_DATE[message.text]
+        bot.send_message(
+            message.from_user.id,
+            utils.generate_message(message.from_user.first_name, utils.get_timetable(group, date))
+        )
+        return
+    bot.send_message(
+        message.from_user.id,
+        'Я Вас не понимаю, попробуйте еще раз'
+    )
+    return
 
 
 bot.polling(non_stop=True, interval=1)
