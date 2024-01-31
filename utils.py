@@ -47,7 +47,7 @@ def generate_message(name, timetable: list):
 АДРЕС:  {subject['address']}
 КАФ:  {subject['department']}
 ССЫЛКА:  {subject['link']}
-ПОДГРУППА:  {str(subject['subgroup']) + ('-я неделя' if subject['subgroup'] != '-' else '')}
+НЕДЕЛЯ:  {str(subject['subgroup']) + ('-я неделя' if subject['subgroup'] != '-' else '')}
         """
 
     return message

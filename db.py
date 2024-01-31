@@ -3,7 +3,6 @@ import config
 
 
 def add_user(user):
-
     if get_user(user.id):
         return False
 
@@ -48,7 +47,6 @@ def delete_user(user_id):
 
 
 def update_group(user_id, group):
-
     if not get_user(user_id):
         return False
 
