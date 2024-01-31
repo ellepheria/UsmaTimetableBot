@@ -36,18 +36,18 @@ def generate_message(name, timetable: list):
     if not len(timetable):
         return 'В этот день занятий нет.'
     message = f"""
-<b>Привет, {name}!</b><br />
-Вот расписание для {timetable[0]['group']} на {constants.DATE_TO_DAY[timetable[0]['data']]}: <br />
+Привет, {name}!
+Вот расписание для {timetable[0]['group']} на {constants.DATE_TO_DAY[timetable[0]['data']]}:
     """
 
     for subject in timetable:
         message += f"""
-НП: {subject['subject']} <br />
-ВР: {subject['time']} <br />
-АДРЕСС: {subject['address']} <br />
-КАФ: {subject['department']} <br />
-ССЫЛКА: {subject['link']} <br />
-ПОДГРУППА: {str(subject['subgroup']) + ('-я неделя' if subject['subgroup'] != '-' else '')} <br />
+НП:  {subject['subject']}
+ВР:  {subject['time']}
+АДРЕС:  {subject['address']}
+КАФ:  {subject['department']}
+ССЫЛКА:  {subject['link']}
+ПОДГРУППА:  {str(subject['subgroup']) + ('-я неделя' if subject['subgroup'] != '-' else '')}
         """
 
     return message
